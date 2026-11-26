@@ -1,0 +1,28 @@
+{
+  "name": "sijill-warehouse",
+  "version": "1.0.0",
+  "description": "نظام سِجِلّ المخازن - أرشيف مستندات المخازن وسلاسل الإمداد",
+  "main": "main.js",
+  "author": "م. باسل أشرف",
+  "license": "Proprietary",
+  "scripts": {
+    "start": "electron .",
+    "build:win": "electron-builder --win portable",
+    "build:linux": "electron-builder --linux AppImage"
+  },
+  "devDependencies": {
+    "electron": "^35.0.0",
+    "electron-builder": "^26.0.12"
+  },
+  "dependencies": {
+    "electron-updater": "^6.6.2"
+  },
+  "build": {
+    "appId": "com.baselashraf.sijill",
+    "productName": "Sijill Warehouse",
+    "artifactName": "${productName}-${version}-${arch}.${ext}",
+    "publish": null,
+    "linux": {"category": "Office", "target": ["AppImage"]},
+    "win": {"target": [{"target": "portable", "arch": ["x64"]}]}
+  }
+}
