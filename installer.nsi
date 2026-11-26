@@ -4,12 +4,12 @@ RequestExecutionLevel admin
 
 !define APP_NAME "Sijill Warehouse"
 !define APP_EXE "Sijill Warehouse.exe"
-!define APP_VERSION "1.0.0"
+!define APP_VERSION "1.0.1"
 !define INSTALL_DIR "$PROGRAMFILES64\${APP_NAME}"
 
 Name "${APP_NAME}"
 Caption "تثبيت ${APP_NAME}"
-OutFile "dist\Sijill Warehouse-1.0.0-Setup.exe"
+OutFile "dist\Sijill Warehouse-1.0.1-Setup.exe"
 InstallDir "${INSTALL_DIR}"
 InstallDirRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APP_NAME}" "InstallLocation"
 

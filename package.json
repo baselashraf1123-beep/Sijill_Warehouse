@@ -1,13 +1,14 @@
 {
   "name": "sijill-warehouse",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "نظام سِجِلّ المخازن - أرشيف مستندات المخازن وسلاسل الإمداد",
   "main": "main.js",
   "author": "م. باسل أشرف",
   "license": "Proprietary",
   "scripts": {
     "start": "electron .",
-    "build:win": "electron-builder --win portable",
+    "build:win": "electron-builder --win nsis",
+    "release:win": "electron-builder --win nsis --publish always",
     "build:linux": "electron-builder --linux AppImage"
   },
   "devDependencies": {
@@ -21,8 +22,9 @@
     "appId": "com.baselashraf.sijill",
     "productName": "Sijill Warehouse",
     "artifactName": "${productName}-${version}-${arch}.${ext}",
-    "publish": null,
+    "publish": [{"provider": "github", "owner": "baselashraf1123-beep", "repo": "Sijill_Warehouse", "releaseType": "release", "private": false}],
     "linux": {"category": "Office", "target": ["AppImage"]},
-    "win": {"target": [{"target": "portable", "arch": ["x64"]}]}
+    "win": {"target": [{"target": "nsis", "arch": ["x64"]}]},
+    "nsis": {"oneClick": false, "perMachine": false, "allowToChangeInstallationDirectory": true}
   }
 }

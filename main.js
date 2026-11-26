@@ -17,13 +17,10 @@ function uid(prefix){return prefix+'_'+crypto.randomBytes(7).toString('hex');}
 function log(db,action,docId,details){db.audit.push({action,docId,details,createdAt:new Date().toISOString()});}
 function emitUpdate(state){ updateState={...updateState,...state}; if(win && !win.isDestroyed()) win.webContents.send('update-status', updateState); }
 function configureUpdates(){
-  // Set SIJILL_UPDATE_URL or place update-config.json in the userData folder.
-  let updateUrl=process.env.SIJILL_UPDATE_URL || '';
-  try { const cfg=path.join(app.getPath('userData'),'update-config.json'); if(fs.existsSync(cfg)) updateUrl=JSON.parse(fs.readFileSync(cfg,'utf8')).updateUrl || updateUrl; } catch {}
-  if(!updateUrl){ emitUpdate({status:'unconfigured',message:'سيتم تفعيل التحديثات عند ربط خادم الإصدارات'}); return; }
+  if(!app.isPackaged){ emitUpdate({status:'unconfigured',message:'التحديثات تعمل في النسخة المثبتة فقط'}); return; }
   try {
     autoUpdater.autoDownload=false; autoUpdater.autoInstallOnAppQuit=true;
-    autoUpdater.setFeedURL({provider:'generic',url:updateUrl.replace(/\/$/,'')+'/' });
+    autoUpdater.setFeedURL({provider:'github',owner:'baselashraf1123-beep',repo:'Sijill_Warehouse',private:false});
     updateConfigured=true;
     autoUpdater.on('checking-for-update',()=>emitUpdate({status:'checking',message:'جارٍ التحقق من وجود تحديثات...'}));
     autoUpdater.on('update-available',info=>emitUpdate({status:'available',version:info.version,message:`يتوفر إصدار جديد ${info.version}`}));
